@@ -218,6 +218,7 @@ public class DungeonReader {
             }
             str.append(String.format("\t%s %s: %d (%.1f/D)%s\n", typeLineSymbol, typeEntry.getKey().name(), typeEntry.getValue(), (float)typeEntry.getValue() / dc, goalPresenceStr));
             Iterator<Map.Entry<String, Integer>> idIterator = roomDistrib.entrySet().iterator();
+            int iteratorLength = roomDistrib.entrySet().size();
             String idLineSymbol = "┣╾";
             while (idIterator.hasNext()) {
                 Map.Entry<String, Integer> idEntry = idIterator.next();
@@ -226,17 +227,21 @@ public class DungeonReader {
                 }
                 float presence = 100 * (float)idEntry.getValue() / dc;
                 String presenceError = "";
+                double roomWeight = this.stats.getRoomWeightMap().get(idEntry.getKey());
                 if (typeEntry.getKey() == RoomType.NORMAL) {
-                    if (presence < goalValue - 7) {
+                    double maxDiffFromGoal = (Math.cbrt(iteratorLength));
+                    if (presence < goalValue - maxDiffFromGoal) {
                         presenceError = String.format(" !!! Too Low %+.1f !!!", presence - goalValue);
-                    } else if (presence > goalValue + 7){
+                        this.sender.sendMessage(String.format("%s: %d -> %d", idEntry.getKey(), (int)roomWeight, 1 + (int)(roomWeight * (1 - (presence - goalValue) / 100))));
+                    } else if (presence > goalValue + maxDiffFromGoal){
                         presenceError = String.format(" !!! Too High %+.1f !!!", presence - goalValue);
+                        this.sender.sendMessage(String.format("%s: %d -> %d", idEntry.getKey(), (int)roomWeight, (int)(roomWeight * (1 - (presence - goalValue) / 100))));
                     }
                 }
                 str.append(String.format("\t%s \t%s %s: %d (%.1f%% Total) (%.1f%% %s) (%.1f%% Presence%s) (Weight: %d)\n",
                         typeIntermediateSymbol, idLineSymbol, idEntry.getKey(), idEntry.getValue(),
                         100 * (float)idEntry.getValue() / total, 100 * (float)idEntry.getValue() / typeEntry.getValue(), typeEntry.getKey().name(),
-                        presence, presenceError, this.stats.getRoomWeightMap().get(idEntry.getKey())));
+                        presence, presenceError, (int)roomWeight));
             }
         }
         str.append("\n\n");
