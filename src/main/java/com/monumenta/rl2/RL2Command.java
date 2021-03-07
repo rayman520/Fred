@@ -59,7 +59,7 @@ public class RL2Command implements CommandExecutor {
             case "generate":
                 Bukkit.getServer().getScheduler().runTaskLaterAsynchronously(this.plugin, () -> {
                     Dungeon dungeon = new Dungeon(this.rooms, loc, this.plugin, true);
-                    dungeon.calculateWithRetries(3);
+                    dungeon.calculateWithRetries(5);
                     dungeon.spawn();
                 }, 0);
 

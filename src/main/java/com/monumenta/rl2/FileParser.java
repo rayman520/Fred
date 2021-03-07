@@ -2,7 +2,6 @@ package com.monumenta.rl2;
 
 import com.google.gson.*;
 import com.monumenta.rl2.enums.Biome;
-import com.monumenta.rl2.enums.Config;
 import com.monumenta.rl2.enums.RoomType;
 import com.monumenta.rl2.objects.Door;
 import com.monumenta.rl2.objects.LootChest;
@@ -21,8 +20,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class FileParser {
-
-
 
     static ArrayList<Room> loadFiles(Plugin plugin, CommandSender sender) {
         ArrayList<Room> out = new ArrayList<>();
@@ -45,8 +42,6 @@ public class FileParser {
                             outLog.append(file.getName());
                             out.add(parseFile(jsonParser.parse(reader)));
                             outLog.append(" | ");
-                        } catch (FileNotFoundException e) {
-                            e.printStackTrace();
                         } catch (IOException e) {
                             e.printStackTrace();
                         } catch (JsonParseException e) {

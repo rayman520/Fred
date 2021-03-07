@@ -1,11 +1,8 @@
 package com.monumenta.rl2.objects;
 
-import com.monumenta.rl2.FileParser;
 import com.monumenta.rl2.enums.Biome;
 import com.monumenta.rl2.enums.DungeonStatus;
 import com.monumenta.rl2.enums.RoomType;
-import com.mysql.fabric.xmlrpc.base.Array;
-import joptsimple.internal.Strings;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
@@ -13,9 +10,7 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitTask;
 
 import java.io.*;
-import java.sql.Time;
 import java.text.SimpleDateFormat;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -23,14 +18,13 @@ import java.util.Map;
 
 public class DungeonReader {
 
-    private ArrayList<Room> rooms;
-    private Plugin plugin;
-    private CommandSender sender;
+    private final ArrayList<Room> rooms;
+    private final Plugin plugin;
+    private final CommandSender sender;
     private float progress;
-    private Location loc;
-    private boolean forced;
+    private final Location loc;
 
-    private Stats stats;
+    private final Stats stats;
 
     public DungeonReader(ArrayList<Room> r, Plugin p, CommandSender s, Location l) {
         this.plugin = p;

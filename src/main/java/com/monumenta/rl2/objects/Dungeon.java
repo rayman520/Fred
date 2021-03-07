@@ -168,10 +168,10 @@ public class Dungeon {
             }
 
             // sets room type priorities
-            if (this.currentIteration == 30 && !generatedDeadend) {
+            if (this.currentIteration == 25 && !generatedDeadend) {
                 roomsToSpawnEnd++;
             }
-            if (this.currentIteration % 10 == 0 && !generatedDeadend) {
+            if (this.currentIteration % 5 == 0 && this.currentIteration < 20 && !generatedDeadend) {
                 roomsToSpawnUtil++;
             }
 

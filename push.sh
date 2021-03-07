@@ -1,3 +1,16 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-scp -r -P 9922 ./out/artifacts/RL2_jar/RL2.jar epic@build.playmonumenta.com:project_epic/server_config/plugins/Roguelite.jar
+sh compile.sh
+
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+cd "$SCRIPT_DIR/target"
+
+plugin="$(ls -r FRED_*.jar | grep -v sources | head -n 1)"
+if [[ -z "$plugin" ]]; then
+	exit 1
+fi
+
+echo "Plugin version: $plugin"
+
+ssh -p 8822 epic@build.playmonumenta.com "cd /home/epic/dev1_shard_plugins && rm -f FRED_*.jar"
+scp -P 8822 $plugin epic@build.playmonumenta.com:/home/epic/dev1_shard_plugins/

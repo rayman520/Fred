@@ -6,7 +6,6 @@ import com.monumenta.rl2.objects.Door;
 import com.monumenta.rl2.objects.LootChest;
 import com.monumenta.rl2.objects.Objective;
 import com.monumenta.rl2.objects.Room;
-import joptsimple.internal.Strings;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -83,7 +82,7 @@ public class StructureParser {
     }
 
     private void saveStructure(String path) {
-        String cmd = "savestructure " + path + " " + Strings.join(Arrays.copyOfRange(this.commandArgs, 2, 8), " ");
+        String cmd = "savestructure \"" + path + "\" " + String.join(" ", Arrays.copyOfRange(this.commandArgs, 2, 8));
         Bukkit.getServer().dispatchCommand(this.sender, cmd);
     }
 

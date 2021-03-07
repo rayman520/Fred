@@ -2,7 +2,7 @@ name: Roguelite
 version: 1.1
 main: com.monumenta.rl2.Main
 description: test
-api-version: 1.13
+api-version: 1.16
 
 commands:
   roguelite:

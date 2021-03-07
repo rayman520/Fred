@@ -1,6 +1,5 @@
 package com.monumenta.rl2;
 
-import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin {

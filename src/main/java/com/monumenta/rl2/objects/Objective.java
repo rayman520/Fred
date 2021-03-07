@@ -2,17 +2,11 @@ package com.monumenta.rl2.objects;
 
 
 import com.monumenta.rl2.Main;
-import com.monumenta.rl2.Utils;
 import com.monumenta.rl2.enums.Biome;
-import net.minecraft.server.v1_13_R2.LootTables;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
-import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
-import org.bukkit.block.Chest;
-import org.bukkit.block.data.Directional;
 import org.bukkit.entity.EnderCrystal;
 import org.bukkit.util.Vector;
 
@@ -42,7 +36,7 @@ public class Objective extends RoomObject {
                 return null;
             } ).get();
             Thread.sleep(100);
-        } catch (Exception e) {
+        } catch (Exception ignored) {
 
         }
     }
