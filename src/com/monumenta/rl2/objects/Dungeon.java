@@ -171,7 +171,7 @@ public class Dungeon {
             if (this.currentIteration == 30 && !generatedDeadend) {
                 roomsToSpawnEnd++;
             }
-            if (this.currentIteration % 10 == 0 && !generatedDeadend) {
+            if ((this.currentIteration - 5) % 10 == 0 && !generatedDeadend) {
                 roomsToSpawnUtil++;
             }
 
